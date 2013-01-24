@@ -1,4 +1,4 @@
-require 'opal/handlebars_grammar'
+require 'opal/handlebars/grammar'
 require 'strscan'
 
 module Opal
@@ -51,7 +51,7 @@ module Opal
           return [:STRING, scanner.matched[1..-2]]
         elsif scanner.scan(/'(\'[']|[^'])*'/)
           return [:STRING, scanner.matched[1..-2]]
-        elsif scanner.scan(/=/)
+        elsif scanner.scan(/\=/)
           return [:EQUALS, scanner.matched]
         elsif scanner.scan(/[\/.]/)
           return [:SEP, scanner.matched]
@@ -131,6 +131,10 @@ module Opal
 
     def push_text(text)
       "push(#{text})\n"
+    end
+
+    def process_block(text)
+      "OPEN_BLOCK\n"
     end
   end
 end
