@@ -10,10 +10,10 @@ module Opal
       parsed = parse source, file
       generate parsed
     end
-    
+
     def parse(source, file='(file)')
       @scanner   = StringScanner.new source
-      @lex_state = :content 
+      @lex_state = :content
       do_parse
     end
 
@@ -59,7 +59,7 @@ module Opal
           # skip whitspace
           return next_token
         elsif scanner.scan(/\}\}/)
-          
+
           @lex_state = :content
           return [:CLOSE, scanner.matched]
         end

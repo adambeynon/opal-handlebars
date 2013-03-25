@@ -1,5 +1,7 @@
-$: << File.join(Dir.getwd, 'lib')
+require 'bundler'
+Bundler.require
 
+$: << File.expand_path('../lib', __FILE__)
 require 'opal/handlebars'
 
 desc "REMOVE THIS"
@@ -17,5 +19,11 @@ task :handlebars do
     {{/if}}
   HTML
 
+  puts content
+  puts "\n----\n\n"
   puts Opal::Handlebars.new.compile(content)
 end
+
+
+#require 'opal/spec/rake_task'
+#Opal::Spec::RakeTask.new(:default)
